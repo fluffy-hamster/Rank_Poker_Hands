@@ -51,29 +51,29 @@ class HandRanking:
         self._rank_count = list(Counter(rank_sequence).values())
         self._suit_count = suit_count
 
-        self.__tiebreaker_rule_high_card_wins = sorted(rank_sequence, reverse=True)
-        self.__tiebreaker_rule_highest_sequence_wins =  sorted(rank_sequence, key= lambda x: (-rank_sequence.count(x), -x))
+        self._tiebreaker_rule_high_card_wins = sorted(rank_sequence, reverse=True)
+        self._tiebreaker_rule_highest_sequence_wins =  sorted(rank_sequence, key= lambda x: (-rank_sequence.count(x), -x))
         
     
     def high_card(self) -> Tuple[int, List[int]]: 
-        return max(self._rank_sequence), self.__tiebreaker_rule_high_card_wins
+        return max(self._rank_sequence), self._tiebreaker_rule_high_card_wins
 
     def flush(self) -> Tuple[bool, List[int]]: 
-        return 5 in self._suit_count, self.__tiebreaker_rule_high_card_wins
+        return 5 in self._suit_count, self._tiebreaker_rule_high_card_wins
     
     def four_of_a_kind(self) -> Tuple[bool, List[int]]:   
-        return 4 in self._rank_count, self.__tiebreaker_rule_highest_sequence_wins
+        return 4 in self._rank_count, self._tiebreaker_rule_highest_sequence_wins
 
     def three_of_a_kind(self) -> Tuple[bool, List[int]]:
-        return (3 in self._rank_count, self.__tiebreaker_rule_highest_sequence_wins)
+        return (3 in self._rank_count, self._tiebreaker_rule_highest_sequence_wins)
 
     def two_pair(self) -> Tuple[bool, List[int]]: 
-        return (self._rank_count.count(2) == 2, self.__tiebreaker_rule_highest_sequence_wins)
+        return (self._rank_count.count(2) == 2, self._tiebreaker_rule_highest_sequence_wins)
 
     def pair(self) -> Tuple[bool, List[int]]: 
         # Note that pair looks specifically for a '2' in _rank_count
         # This means that pair will return false if there are three or four copies of the same card.
-        return (2 in self._rank_count, self.__tiebreaker_rule_highest_sequence_wins)
+        return (2 in self._rank_count, self._tiebreaker_rule_highest_sequence_wins)
 
     def straight(self) -> Tuple[bool, List[int]]:
 
@@ -84,13 +84,13 @@ class HandRanking:
                 return (False, [])
             prev_val = card_rank
             
-        return (True, self.__tiebreaker_rule_high_card_wins)
+        return (True, self._tiebreaker_rule_high_card_wins)
             
     def straight_flush(self) -> Tuple[bool, List[int]]: 
         is_flush, _  = self.flush()
         is_straight, _ = self.straight()
 
-        return is_flush and is_straight, self.__tiebreaker_rule_high_card_wins
+        return is_flush and is_straight, self._tiebreaker_rule_high_card_wins
         
     def royal_flush(self) -> Tuple[bool, List[int]]: 
 
@@ -104,7 +104,7 @@ class HandRanking:
         is_three_of_a_kind, _ = self.three_of_a_kind()
         is_pair, _ = self.pair()
 
-        return is_three_of_a_kind and is_pair, self.__tiebreaker_rule_highest_sequence_wins
+        return is_three_of_a_kind and is_pair, self._tiebreaker_rule_highest_sequence_wins
         
     @staticmethod
     def texasholdem_hand_rankings() -> List[str]:

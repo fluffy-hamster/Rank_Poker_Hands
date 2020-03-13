@@ -22,8 +22,8 @@ class Card:
         
         self._ace_high = ace_high
             
-        self._value: int = self.__parse_numerical_rank(card[0])
-        self._suit: str  = self.__parse_suit(card[1])
+        self._value: int = self._parse_numerical_rank(card[0])
+        self._suit: str  = self._parse_suit(card[1])
         
         assert self._value is not None, "Error parsing rank"
         assert self._suit is not None, "Error parsing suit"
@@ -42,11 +42,11 @@ class Card:
     def __str__(self):
         return "<CardObj:({},{})>".format(self._value, self._suit)
         
-    def __parse_suit(self, character : str) -> Union[str, None]:
+    def _parse_suit(self, character : str) -> Union[str, None]:
         suits = ["S", "C", "H", "D"]
         return character if character.upper() in suits else None
         
-    def __parse_numerical_rank(self, character: str) -> Union[int, None]:
+    def _parse_numerical_rank(self, character: str) -> Union[int, None]:
         
         if character == "A":
             return Card.ACE_HIGH if self._ace_high else Card.ACE_LOW

@@ -8,18 +8,18 @@ from card import Card
 class Hand:
 
     def __init__(self, hand: str):
-        self._hand_interpretations: List[Tuple[Card]] = self.__parse_hand(hand)
+        self._hand_interpretations: List[Tuple[Card]] = self._parse_hand(hand)
 
         self._hand_rank: int
         self._tiebreaker: List[int]
         self._hand: Tuple[Card]
 
-        self._hand_rank, self._tiebreaker, self.hand = self.__best_hand(self._hand_interpretations)
+        self._hand_rank, self._tiebreaker, self.hand = self._best_hand(self._hand_interpretations)
 
     def get_hand_rank(self) -> str:
         return HandRanking.texasholdem_hand_rankings()[len(HandRanking.texasholdem_hand_rankings()) - self._hand_rank]
 
-    def __parse_hand(self, hand: str) -> List[Tuple[Card]]: 
+    def _parse_hand(self, hand: str) -> List[Tuple[Card]]: 
         """
         Finds all the possible ways to interpret a hand. In the cases where there are no aces, there is only one interpretation.
         However, when there is one (or several) aces in the hand there are a number of ways to intrepret the hand. 
@@ -47,7 +47,7 @@ class Hand:
         return hand_interpretations
 
 
-    def __best_hand(self, interpretations: List[Tuple[Card]]) -> Tuple[int, List[int], Tuple[Card]]:
+    def _best_hand(self, interpretations: List[Tuple[Card]]) -> Tuple[int, List[int], Tuple[Card]]:
         """
             For hands without aces, the 'best hand' is just the hand. We assign it a rank and calculate tiebreakers
 

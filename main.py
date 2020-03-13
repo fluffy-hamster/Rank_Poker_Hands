@@ -21,6 +21,6 @@ if __name__ == "__main__":
 
     reverse_order = sorted(hands, reverse=True)
 
-    assert hands == reverse_order[::-1], "God f****** damnnit."
+    assert hands == reverse_order[::-1], "well that sucks"
 
     sys.exit(0)
