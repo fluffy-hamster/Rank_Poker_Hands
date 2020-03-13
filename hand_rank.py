@@ -10,7 +10,7 @@ class HandRanking:
         rank_sequence is simply a list of numerical values for each card
         suit_count is simply a count of times each suit appears. (unordered)
 
-        From these two rules we can derive rank all poker hands, including tiebreakers.
+        From these two rules we can derive ranks for all poker hands, including tiebreakers.
 
         EXAMPLE 1:
 
@@ -30,7 +30,7 @@ class HandRanking:
             rank_sequence -> [11, 11, 11, 3]
             suit_count -> [2, 1, 1, 1]           (#1 spades, #2 diamonds, ... )
 
-            from rank count we can derive a 'rank_count', which would be [4, 1]  (#4 Jacks, #1 3)
+            from rank_sequence we can derive a 'rank_count', which would be [4, 1]  (#4 Jacks, #1 3)
             And since rank_count contains 4 we know that the hand contains a '4 of a kind'. 
 
         ----------------------------------------------------------------------------------------------
