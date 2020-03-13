@@ -87,6 +87,11 @@ class HandRanking:
         return (True, self._tiebreaker_rule_high_card_wins)
             
     def straight_flush(self) -> Tuple[bool, List[int]]: 
+
+        # Bugs lurk here.  
+        # By the definition below, royal flushes are straight_flushes. 
+        # This isn't a problem in the context of the Hand class (because in the context a royal flush is checked before straight flush)
+        # However, this is a problem when call these functions in isolation.  
         is_flush, _  = self.flush()
         is_straight, _ = self.straight()
 
