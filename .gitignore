@@ -6,3 +6,5 @@ __pycache__/hand_rank_TEST.cpython-37-pytest-5.0.1.pyc
 __pycache__/card.cpython-37.pyc
 __pycache__/hand.cpython-37.pyc
 __pycache__/hand_rank.cpython-37.pyc
+.pytest_cache/v/cache/lastfailed
+.vscode/launch.json
