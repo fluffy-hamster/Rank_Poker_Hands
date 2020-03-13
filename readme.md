@@ -22,5 +22,5 @@ The code will parse a poker hand as a space-seperated string where each card is 
 	
 ### Comparing Hands
 
-Hand("AS AD AC AH JD") < Hand("JS JD JC JH 3D") --> False # four of a kind, where ace high beats 4 jacks. 
+* Hand("AS AD AC AH JD") < Hand("JS JD JC JH 3D") --> False # four of a kind, where ace high beats 4 jacks. 
 

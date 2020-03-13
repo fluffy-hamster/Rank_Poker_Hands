@@ -16,6 +16,9 @@ class Hand:
 
         self._hand_rank, self._tiebreaker, self.hand = self.__best_hand(self._hand_interpretations)
 
+    def get_hand_rank(self) -> str:
+        return HandRanking.texasholdem_hand_rankings()[self._hand_rank]
+
     def __parse_hand(self, hand: str) -> List[Tuple[Card]]: 
         hand_lst = []
         for c in hand.split(" "):
@@ -55,9 +58,6 @@ class Hand:
                    
         # should never reach here
         raise Exception("Failed to rank hand")
-
-    def get_hand_rank(self) -> str:
-        return HandRanking.texasholdem_hand_rankings()[self._hand_rank]
 
     def __lt__(self, other):
         if self._hand_rank == other._hand_rank:

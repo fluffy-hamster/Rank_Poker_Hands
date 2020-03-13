@@ -12,7 +12,7 @@ class Card:
              Where first character denotes the value and second character denotes the suit.
              e.g: 'Ace of Spades' => 'AS', 'Two of Hearts' => '2H'     
 
-             Note also that if the card is an Ace, the ace_high optional param denotes if card is high low
+             Note also that if the card is an Ace, the ace_high optional param denotes if card is high/low
 
         Output:
               Card object
