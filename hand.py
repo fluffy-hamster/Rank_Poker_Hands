@@ -17,7 +17,8 @@ class Hand:
         self._hand_rank, self._tiebreaker, self.hand = self._best_hand(self._hand_interpretations)
 
     def get_hand_rank(self) -> str:
-        return HandRanking.texasholdem_hand_rankings()[len(HandRanking.texasholdem_hand_rankings()) - self._hand_rank]
+        ranks = HandRanking.texasholdem_hand_rankings()
+        return ranks[len(ranks) - self._hand_rank]
 
     def _parse_hand(self, hand: str) -> List[Tuple[Card]]: 
         """
