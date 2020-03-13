@@ -8,7 +8,7 @@ class HandRanking:
     def __init__(self, rank_sequence: List[int], suit_count: List[int]):
         """
         rank_sequence is simply a list of numerical values for each card
-        suit_count is simply a count of times each suit appears. 
+        suit_count is simply a count of times each suit appears. (unordered)
 
         From these two rules we can derive rank all poker hands, including tiebreakers.
 
@@ -36,12 +36,12 @@ class HandRanking:
         ----------------------------------------------------------------------------------------------
         Tiebreaker rules: https://www.adda52.com/poker/poker-rules/cash-game-rules/tie-breaker-rules
 
-            As an implementation details, there are two basic rules for tiebreakers. 
+            As an implementation detail, there are two basic rules for tiebreakers. 
             For hands like a 'straight flush' its simply highest card wins.
             For 'two pair', its highest pair, second highest pair, then highest card wins.
 
             The first case is simply solved simply by sorting. The 2nd case can be done by
-            using a 'stable sort'; we sort by count then value.  
+            using a 'stable sort'; that is, we sort first by count and then value.  
         """
 
         assert len(rank_sequence) == 5, "Error, rank_sequence should be of length 5"
@@ -71,7 +71,6 @@ class HandRanking:
         return (self._rank_count.count(2) == 2, self.__tiebreaker_rule_highest_sequence_wins)
 
     def pair(self) -> Tuple[bool, List[int]]: 
-
         # Note that pair looks specifically for a '2' in _rank_count
         # This means that pair will return false if there are three or four copies of the same card.
         return (2 in self._rank_count, self.__tiebreaker_rule_highest_sequence_wins)
@@ -82,7 +81,7 @@ class HandRanking:
         prev_val = sorted_hand[0]
         for card_rank in sorted_hand[1:]:
             if card_rank - 1 != prev_val:
-                return (False, []) # If hand isn't a straight, tiebreaker is empty
+                return (False, [])
             prev_val = card_rank
             
         return (True, self.__tiebreaker_rule_high_card_wins)
@@ -110,10 +109,9 @@ class HandRanking:
     @staticmethod
     def texasholdem_hand_rankings() -> List[str]:
         """
-        Highest to lowest
+        In order of Highest to lowest
 
-        Note, 
-        we return function.__name__ rather than using raw strings such as "royal flush".
+        Note that we return function.__name__ rather than using raw strings such as "royal flush".
         This is a deliberate design choice with maintainability in mind (i.e. this will update as functions are renamed, strings would not)
         """
         return [
