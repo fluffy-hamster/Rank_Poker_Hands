@@ -62,7 +62,7 @@ class Hand:
     def __lt__(self, other):
         if self._hand_rank == other._hand_rank:
             # Note that tiebreakers are implemented as numbers
-            # thus this comparision takes advantage of default python behaviour
+            # thus this comparision takes advantage of default python behavior
             # e.g [1,2,3] < [1,2,4] = True
             return self._tiebreaker > other._tiebreaker
         
