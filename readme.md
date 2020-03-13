@@ -17,12 +17,10 @@ Straight_Flush: "2H 3H 4H 5H 6H"
 
 ### Evaluating a hand
 
->>> h.Hand("2H 3H 4H 5H 6H") 
->>> h.get_hand_rank()
-"straight_flush"
+h.Hand("2H 3H 4H 5H 6H") 
+h.get_hand_rank() --> "straight_flush"
 	
 ### Comparing Hands
 
->>> Hand("AS AD AC AH JD") < Hand("JS JD JC JH 3D")
-False # four of a kind, where ace high beats 4 jacks. 
+Hand("AS AD AC AH JD") < Hand("JS JD JC JH 3D") --> False # four of a kind, where ace high beats 4 jacks. 
 
